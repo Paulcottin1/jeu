@@ -1,34 +1,38 @@
 <?php
 namespace App\controller;
 use App\manager\PostManager;
-use App\manager\CommentManager;
-use App\manager\UserManager;
+use App\manager\RoomManager;
 
 Class FrontendController 
 {
-
     public function home() 
     {
-        $manager = new PostManager();
-        $posts = $manager->getPosts(4);
         $template = 'home';
         $title = 'Accueil';
         require('view/frontend/template.php');
     }
-    
-    /**
-     * Render blog page
-     * @param  int $limite
-     * @return
-     */
-    public function listPosts($limite)
+
+    public function create()
     {   
-        $manager = new PostManager();
-        $numberPages = ceil($manager->countPost() / $limite);
-        $posts = $manager->getPosts($limite);
-        $paging = '/blog';
-        $title = 'Mon blog';
-        $template = 'listPostsView';
+        $manager = new RoomManager;
+        $manager->create();
+        $title = 'Création room';
+        $template = 'create';
         require('view/frontend/template.php');
+    }
+
+    public function join($pin)
+    {
+        if(!empty($pin)) {
+            $manager = new RoomManager;
+            $manager->join($pin);
+            $title = 'Rejoindre une room';
+            $template = 'join';
+            require('view/frontend/template.php');
+        } else {
+            $this->home();
+            $_SESSION['message'] = "Aucun PIN n'est entré";
+        }
+
     }
 }
