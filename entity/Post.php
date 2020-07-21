@@ -1,6 +1,6 @@
 <?php
 namespace App\entity;
-
+// CECI EST UN EXEMPLE POUR NOS ENTITY; A SUPPRIMER PLUS TARD
 Class Post {     
     /**
      * @var int

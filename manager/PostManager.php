@@ -2,7 +2,7 @@
 namespace App\manager;
 use App\manager\CommentManager;
 use App\entity\Post;
-
+// CECI EST UN EXEMPLE POUR NOS MANAGER; A SUPPRIMER PLUS TARD
 Class PostManager extends AbstractManager
 {  
     /**
